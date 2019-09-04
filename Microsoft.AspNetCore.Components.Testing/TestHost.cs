@@ -36,6 +36,11 @@ namespace Microsoft.AspNetCore.Components.Testing
             _serviceCollection.AddSingleton(typeof(TContract), implementation);
         }
 
+        public void ConfigureServices(Action<IServiceCollection> configure)
+        {
+            configure(_serviceCollection);
+        }
+
         public void WaitForNextRender(Action trigger)
         {
             var task = Renderer.NextRender;
