@@ -53,10 +53,10 @@ namespace Microsoft.AspNetCore.Components.Testing
             }
         }
 
-        public RenderedComponent<TComponent> AddComponent<TComponent>() where TComponent: IComponent
+        public RenderedComponent<TComponent> AddComponent<TComponent>(ParameterView? parameterView = null) where TComponent : IComponent
         {
             var result = new RenderedComponent<TComponent>(Renderer);
-            result.SetParametersAndRender(ParameterView.Empty);
+            result.SetParametersAndRender(parameterView.HasValue ? parameterView.Value : ParameterView.Empty);
             return result;
         }
 
